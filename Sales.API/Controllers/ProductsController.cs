@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Sales.API.Models;
 using Sales.Common.Models;
 using Sales.Domain.Models;
 
@@ -23,6 +24,27 @@ namespace Sales.API.Controllers
         {
             return db.Products.AsQueryable();
         }
+        //[HttpGet]
+        //public Reply GetProducts()
+        //{
+        //    Reply oReply = new Reply();
+        //    oReply.result = 0;
+        //    using (DataContext db = new DataContext())
+        //    {
+        //        List<Product> lstProducts = (from d in db.Products
+        //                  select new Product
+        //                  {
+        //                      ProductId = d.ProductId,
+        //                      Description = d.Description,
+        //                      Price = d.Price,
+        //                      IsAvailable = d.IsAvailable,
+        //                      PublishOn = d.PublishOn
+        //                  }).ToList();
+        //        oReply.result = 1;
+        //        oReply.data = lstProducts;
+        //    }
+        //    return oReply;
+        //}
 
         // GET: api/Products/5
         [ResponseType(typeof(Product))]
