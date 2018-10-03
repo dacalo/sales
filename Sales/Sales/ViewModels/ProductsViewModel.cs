@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Sales.Common.Models;
+using Sales.Helpers;
 using Sales.Services;
 using System;
 using System.Collections.Generic;
@@ -41,16 +42,18 @@ namespace Sales.ViewModels
             if (!connection.isSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert("Error", connection.message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.message, Languages.Accept);
                 return;
             }
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.GetList<Product>(url, "/api", "/Products");
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlProductsController"].ToString();
+            var response = await this.apiService.GetList<Product>(url, prefix, controller);
             if (!response.isSuccess)
             {
                 this.IsRefreshing = false;
-                await Application.Current.MainPage.DisplayAlert("Error", response.message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.message, Languages.Accept);
                 return;
             }
 

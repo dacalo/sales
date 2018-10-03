@@ -90,6 +90,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Implementations\Localize.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />
@@ -162,5 +163,11 @@
       <Project>{92CEE932-011E-4F20-AA0E-D5976E0AD408}</Project>
       <Name>Sales</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\noproduct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_action_add_circle.png" />
   </ItemGroup>
 </Project>

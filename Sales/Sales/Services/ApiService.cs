@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using Plugin.Connectivity;
-using Sales.Common.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Plugin.Connectivity;
+using Sales.Common.Models;
+using Sales.Helpers;
 
 namespace Sales.Services
 {
@@ -18,8 +18,7 @@ namespace Sales.Services
                 return new Response
                 {
                     isSuccess = false,
-                    message = "Please turn on your intenet settings."
-                    //message = Languages.TurnOnInternet,
+                    message = Languages.TurnOnInternet,
                 };
             }
 
@@ -29,8 +28,7 @@ namespace Sales.Services
                 return new Response
                 {
                     isSuccess = false,
-                    message = "No internet connection"
-                    //message = Languages.NoInternet,
+                    message = Languages.NoInternet,
                 };
             }
 
@@ -39,6 +37,7 @@ namespace Sales.Services
                 isSuccess = true,
             };
         }
+
         public async Task<Response> GetList<T>(string urlBase, string prefix, string controller)
         {
             try
