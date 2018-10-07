@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,9 +34,13 @@ namespace Sales.Common.Models
                 {
                     return "noproduct";
                 }
-                return $"http://10.1.39.5:84{this.ImagePath.Substring(1)}";
+                //return $"http://10.1.39.5:83{this.ImagePath.Substring(1)}";
+                return $"http://dacalo-001-site2.atempurl.com{this.ImagePath.Substring(1)}";
             }
         }
+
+        [NotMapped]
+        public byte[] ImageArray { get; set; }
 
         //public override string ToString()
         //{

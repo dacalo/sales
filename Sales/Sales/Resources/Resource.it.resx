@@ -132,4 +132,73 @@
   <data name="Products" xml:space="preserve">
     <value>Prodotti</value>
   </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Metti nel carrello</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Descrizione</value>
+  </data>
+  <data name="DescriptionPlaceHolder" xml:space="preserve">
+    <value>Inserisci la descrizione del prodotto ...!</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Prezzo</value>
+  </data>
+  <data name="PricePlaceHolder" xml:space="preserve">
+    <value>Inserisci il Prezzo del prodotto.</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>
+Note:
+
+</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Tocca la immagine per cambiarla.!</value>
+  </data>
+  <data name="DescriptionError" xml:space="preserve">
+    <value>Devi inserire una descrizione.!</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>Devi inserire un prezzo maggiore dello zero.!</value>
+  </data>
+  <data name="ImageSource" xml:space="preserve">
+	  <value>Dove prendi immagine ?</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+	  <value>Dalla galleria!</value>
+  </data>
+  <data name="NewPicture" xml:space="preserve">
+	  <value>Scatta una nuova foto</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+	  <value>Annulla</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Modifica!</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Sì!</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No!</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Conferma</value>
+  </data>
+  <data name="EditProduct" xml:space="preserve">
+    <value>Modifica Prodotto</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>è disponibile</value>
+  </data>
 </root>

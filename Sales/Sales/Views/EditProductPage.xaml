@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:Sales.Helpers"
-             x:Class="Sales.Views.AddProductPage"
+             x:Class="Sales.Views.EditProductPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="{i18n:Translate AddProduct}">
+             Title="{i18n:Translate EditProduct}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout 
-                BindingContext="{Binding AddProduct}"
+                BindingContext="{Binding EditProduct}"
                 Padding="5">
                 <Image
                     Source="{Binding ImageSource}">
@@ -16,7 +16,7 @@
                         <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
-                    <Label 
+                <Label 
                     FontSize="Small"
                     HorizontalOptions="Center"
                     Text="{i18n:Translate ChangeImage}"/>
@@ -39,7 +39,7 @@
                         Grid.Column="1"
                         Grid.Row="0"
                         Placeholder="{i18n:Translate DescriptionPlaceHolder}"
-                        Text="{Binding Description}"/>
+                        Text="{Binding Product.Description}"/>
                     <Label 
                         VerticalOptions="Center"
                         Grid.Column="0"
@@ -50,8 +50,7 @@
                         Grid.Row="1"
                         Keyboard="Numeric"
                         Placeholder="{i18n:Translate PricePlaceHolder}"
-                        Text="{Binding Price}">
-                    </Entry>
+                        Text="{Binding Product.Price}"/>
                     <Label 
                         VerticalOptions="Center"
                         Grid.Column="0"
@@ -61,19 +60,42 @@
                         Grid.Column="1"
                         Grid.Row="2"
                         VerticalOptions="FillAndExpand"
-                        Text="{Binding Remarks}"/>
+                        Text="{Binding Product.Remarks}"/>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="{i18n:Translate IsAvailable}"
+                        VerticalOptions="Center"/>
+                    <Switch
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        HorizontalOptions="End"
+                        IsToggled="{Binding Product.IsAvailable}"/>
                 </Grid>
                 <ActivityIndicator 
                     IsRunning="{Binding IsRunning}"
                     VerticalOptions="CenterAndExpand"/>
-                <Button
-                    BackgroundColor="Navy"
-                    BorderRadius="23"
-                    Command="{Binding SaveCommand}"
-                    IsEnabled="{Binding IsEnabled}"
-                    HeightRequest="46"
-                    Text="{i18n:Translate Save}"
-                    TextColor="White"/>
+                <StackLayout
+                    Orientation="Horizontal">
+                    <Button
+                        BackgroundColor="Navy"
+                        BorderRadius="23"
+                        Command="{Binding SaveCommand}"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        HeightRequest="46"
+                        Text="{i18n:Translate Save}"
+                        TextColor="White"/>
+                    <Button
+                        BackgroundColor="Red"
+                        BorderRadius="23"
+                        Command="{Binding DeleteProductCommand}"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        HeightRequest="46"
+                        Text="{i18n:Translate Delete}"
+                        TextColor="White"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

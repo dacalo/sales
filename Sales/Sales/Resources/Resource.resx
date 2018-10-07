@@ -132,4 +132,70 @@
   <data name="Products" xml:space="preserve">
     <value>Products</value>
   </data>
+  <data name="AddProduct" xml:space="preserve">
+    <value>Add Product</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DescriptionPlaceHolder" xml:space="preserve">
+    <value>Enter the product description...</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PricePlaceHolder" xml:space="preserve">
+    <value>Enter the product price...</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Touch the image to change it.</value>
+  </data>
+  <data name="DescriptionError" xml:space="preserve">
+    <value>You must enter a description.</value>
+  </data>
+  <data name="PriceError" xml:space="preserve">
+    <value>You must enter a price greater the zero.</value>
+  </data>
+  <data name="ImageSource" xml:space="preserve">
+	  <value>Where do you take the picture?</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+	  <value>From gallery</value>
+  </data>
+  <data name="NewPicture" xml:space="preserve">
+	  <value>Take a new picture</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+	  <value>Cancel</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteConfirmation" xml:space="preserve">
+    <value>Are you sure to delete this?</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="EditProduct" xml:space="preserve">
+    <value>Edit Product</value>
+  </data>
+  <data name="IsAvailable" xml:space="preserve">
+    <value>Is Available?</value>
+  </data>
 </root>
