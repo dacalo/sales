@@ -77,7 +77,7 @@ namespace Sales.Helpers
             }
             set
             {
-                AppSettings.AddOrUpdateValue(tokenType, value);
+                AppSettings.AddOrUpdateValue(userASP, value);
             }
         }
 

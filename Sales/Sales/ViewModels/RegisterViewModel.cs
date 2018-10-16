@@ -222,13 +222,13 @@ namespace Sales.ViewModels
             this.IsEnabled = false;
 
             var connection = await this.apiService.CheckConnection();
-            if (!connection.isSuccess)
+            if (!connection.IsSuccess)
             {
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    connection.message,
+                    connection.Message,
                     Languages.Accept);
                 return;
             }
@@ -254,13 +254,13 @@ namespace Sales.ViewModels
             var controller = Application.Current.Resources["UrlUsersController"].ToString();
             var response = await this.apiService.Post(url, prefix, controller, userRequest);
 
-            if (!response.isSuccess)
+            if (!response.IsSuccess)
             {
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    response.message,
+                    response.Message,
                     Languages.Accept);
                 return;
             }

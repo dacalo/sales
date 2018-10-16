@@ -34,7 +34,18 @@ namespace Sales.ViewModels
             }
         }
 
+        public string UserImageFullPath
+        {
+            get
+            {
+                if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 3)
+                {
+                    return $"http://dacalo-001-site2.atempurl.com{this.UserASP.Claims[3].ClaimValue.Substring(1)}";
+                }
 
+                return null;
+            }
+        }
         #endregion
 
         #region Constructors

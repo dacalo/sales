@@ -106,7 +106,7 @@ namespace Sales.ViewModels
             //    return;
             //}
 
-            if (connection.isSuccess)
+            if (connection.IsSuccess)
             {
                 var answer = await this.LoadProductsFromAPI();
                 if (answer)
@@ -172,12 +172,12 @@ namespace Sales.ViewModels
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
             var response = await this.apiService.GetList<Product>(url, prefix, controller, Settings.TokenType, Settings.AccesToken);
-            if (!response.isSuccess)
+            if (!response.IsSuccess)
             {
                 return false;
             }
 
-            this.MyProducts = (List<Product>)response.result;
+            this.MyProducts = (List<Product>)response.Result;
             return true;
         }
 

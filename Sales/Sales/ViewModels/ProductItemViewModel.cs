@@ -56,9 +56,9 @@ namespace Sales.ViewModels
             }
 
             var connection = await this.apiService.CheckConnection();
-            if (!connection.isSuccess)
+            if (!connection.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.message, Languages.Accept);
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
                 return;
             }
 
@@ -66,9 +66,9 @@ namespace Sales.ViewModels
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
             var response = await this.apiService.Delete(url, prefix, controller, this.ProductId, Settings.TokenType, Settings.AccesToken);
-            if (!response.isSuccess)
+            if (!response.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.message, Languages.Accept);
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, response.Message, Languages.Accept);
                 return;
             }
 

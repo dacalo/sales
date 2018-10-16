@@ -19,8 +19,8 @@ namespace Sales.Services
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = Languages.TurnOnInternet,
+                    IsSuccess = false,
+                    Message = Languages.TurnOnInternet,
                 };
             }
 
@@ -29,14 +29,14 @@ namespace Sales.Services
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = Languages.NoInternet,
+                    IsSuccess = false,
+                    Message = Languages.NoInternet,
                 };
             }
 
             return new Response
             {
-                isSuccess = true,
+                IsSuccess = true,
             };
         }
 
@@ -75,23 +75,23 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 var lst = JsonConvert.DeserializeObject<List<T>>(answer);
                 return new Response
                 {
-                    isSuccess = true,
-                    result = lst
+                    IsSuccess = true,
+                    Result = lst
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         }
@@ -111,23 +111,23 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 var obj = JsonConvert.DeserializeObject<T>(answer);
                 return new Response
                 {
-                    isSuccess = true,
-                    result = obj
+                    IsSuccess = true,
+                    Result = obj
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         }
@@ -147,23 +147,23 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 var obj = JsonConvert.DeserializeObject<T>(answer);
                 return new Response
                 {
-                    isSuccess = true,
-                    result = obj
+                    IsSuccess = true,
+                    Result = obj
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         }
@@ -181,21 +181,21 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 return new Response
                 {
-                    isSuccess = true
+                    IsSuccess = true
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         } 
@@ -217,23 +217,23 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 var lst = JsonConvert.DeserializeObject<List<T>>(answer);
                 return new Response
                 {
-                    isSuccess = true,
-                    result = lst
+                    IsSuccess = true,
+                    Result = lst
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         }
@@ -254,23 +254,23 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 var obj = JsonConvert.DeserializeObject<T>(answer);
                 return new Response
                 {
-                    isSuccess = true,
-                    result = obj
+                    IsSuccess = true,
+                    Result = obj
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         }
@@ -291,23 +291,23 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 var obj = JsonConvert.DeserializeObject<T>(answer);
                 return new Response
                 {
-                    isSuccess = true,
-                    result = obj
+                    IsSuccess = true,
+                    Result = obj
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         }
@@ -326,21 +326,21 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer
+                        IsSuccess = false,
+                        Message = answer
                     };
                 }
                 return new Response
                 {
-                    isSuccess = true
+                    IsSuccess = true
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message
+                    IsSuccess = false,
+                    Message = ex.Message
                 };
             }
         }
@@ -368,24 +368,24 @@ namespace Sales.Services
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = answer,
+                        IsSuccess = false,
+                        Message = answer,
                     };
                 }
 
                 var user = JsonConvert.DeserializeObject<MyUserASP>(answer);
                 return new Response
                 {
-                    isSuccess = true,
-                    result = user,
+                    IsSuccess = true,
+                    Result = user,
                 };
             }
             catch (Exception ex)
             {
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message,
+                    IsSuccess = false,
+                    Message = ex.Message,
                 };
             }
         }

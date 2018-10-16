@@ -152,13 +152,13 @@ namespace Sales.ViewModels
             this.IsEnabled = false;
 
             var connection = await this.apiService.CheckConnection();
-            if (!connection.isSuccess)
+            if (!connection.IsSuccess)
             {
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    connection.message,
+                    connection.Message,
                     Languages.Accept);
                 return;
             }
@@ -182,17 +182,17 @@ namespace Sales.ViewModels
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
             var response = await this.apiService.Post(url, prefix, controller, product, Settings.TokenType, Settings.AccesToken);
 
-            if (!response.isSuccess)
+            if (!response.IsSuccess)
             {
                 this.IsRunning = false;
                 this.IsEnabled = true;
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    response.message,
+                    response.Message,
                     Languages.Accept);
                 return;
             }
-            var newProduct = (Product)response.result;
+            var newProduct = (Product)response.Result;
             var productsViewModel = ProductsViewModel.GetInstance();
             productsViewModel.MyProducts.Add(newProduct);
             productsViewModel.RefreshList();

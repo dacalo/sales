@@ -28,11 +28,11 @@ namespace Sales.API.Controllers
             }
 
             var answer = UsersHelper.CreateUserASP(userRequest);
-            if (answer.isSuccess)
+            if (answer.IsSuccess)
             {
                 return Ok(answer);
             }
-            return BadRequest(answer.message);
+            return BadRequest(answer.Message);
         }
 
         [HttpPost]

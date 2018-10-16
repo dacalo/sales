@@ -8,14 +8,15 @@ using Android.Widget;
 using Android.OS;
 using Plugin.Permissions;
 using Plugin.CurrentActivity;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace Sales.Droid
 {
     [Activity(
         Label = "Sales",
-        Icon = "@mipmap/icon",
+        Icon = "@mipmap/ic_launcher",
         Theme = "@style/MainTheme",
-        MainLauncher = true,
+        MainLauncher = false,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -26,6 +27,7 @@ namespace Sales.Droid
 
             base.OnCreate(savedInstanceState);
             CrossCurrentActivity.Current.Init(this, savedInstanceState);
+            ImageCircleRenderer.Init();
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }

@@ -48,8 +48,8 @@ namespace Sales.API.Helpers
                 {
                     return new Response
                     {
-                        isSuccess = false,
-                        message = "001. User already exists.",
+                        IsSuccess = false,
+                        Message = "001. User already exists.",
                     };
                 }
 
@@ -64,22 +64,22 @@ namespace Sales.API.Helpers
                 if (result.Succeeded)
                 {
                     var newUserASP = userManager.FindByEmail(userRequest.EMail);
-                    userManager.AddClaim(newUserASP.Id, new Claim(ClaimTypes.GivenName, userRequest.FirstName));
-                    userManager.AddClaim(newUserASP.Id, new Claim(ClaimTypes.Name, userRequest.LastName));
+                    userManager.AddClaim(newUserASP.Id, new System.Security.Claims.Claim(ClaimTypes.GivenName, userRequest.FirstName));
+                    userManager.AddClaim(newUserASP.Id, new System.Security.Claims.Claim(ClaimTypes.Name, userRequest.LastName));
 
                     if (!string.IsNullOrEmpty(userRequest.Address))
                     {
-                        userManager.AddClaim(newUserASP.Id, new Claim(ClaimTypes.StreetAddress, userRequest.Address));
+                        userManager.AddClaim(newUserASP.Id, new System.Security.Claims.Claim(ClaimTypes.StreetAddress, userRequest.Address));
                     }
 
                     if (!string.IsNullOrEmpty(userRequest.ImagePath))
                     {
-                        userManager.AddClaim(newUserASP.Id, new Claim(ClaimTypes.Uri, userRequest.ImagePath));
+                        userManager.AddClaim(newUserASP.Id, new System.Security.Claims.Claim(ClaimTypes.Uri, userRequest.ImagePath));
                     }
 
                     return new Response
                     {
-                        isSuccess = true,
+                        IsSuccess = true,
                     };
                 }
 
@@ -91,8 +91,8 @@ namespace Sales.API.Helpers
 
                 return new Response
                 {
-                    isSuccess = false,
-                    message = errors,
+                    IsSuccess = false,
+                    Message = errors,
                 };
             }
             catch (Exception ex)
@@ -100,8 +100,8 @@ namespace Sales.API.Helpers
 
                 return new Response
                 {
-                    isSuccess = false,
-                    message = ex.Message,
+                    IsSuccess = false,
+                    Message = ex.Message,
                 };
             }
         }

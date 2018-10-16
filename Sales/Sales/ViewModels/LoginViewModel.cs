@@ -52,12 +52,37 @@ namespace Sales.ViewModels
             get { return new RelayCommand(Login); }
         }
 
+        public ICommand LoginFacebookComand
+        {
+            get
+            {
+                return new RelayCommand(LoginFacebook);
+            }
+        }
+
+        public ICommand LoginInstagramComand
+        {
+            get
+            {
+                return new RelayCommand(LoginInstagram);
+            }
+        }
+
+        public ICommand LoginTwitterComand
+        {
+            get
+            {
+                return new RelayCommand(LoginTwitter);
+            }
+        }
+
         public ICommand RegisterCommand
         {
             get { return new RelayCommand(Register); }
         }
+
         #endregion
-        
+
         #region Methods
         private async void Login()
         {
@@ -82,11 +107,11 @@ namespace Sales.ViewModels
             this.isEnabled = false;
 
             var connection = await this.apiService.CheckConnection();
-            if (!connection.isSuccess)
+            if (!connection.IsSuccess)
             {
                 this.IsRunning = false;
                 this.isEnabled = true;
-                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.message, Languages.Accept);
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
                 return;
             }
             var url = Application.Current.Resources["UrlAPI"].ToString();
@@ -106,9 +131,9 @@ namespace Sales.ViewModels
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlUsersController"].ToString();
             var response = await this.apiService.GetUser(url, prefix, $"{controller}/GetUser", this.Email, token.TokenType, token.AccessToken);
-            if (response.isSuccess)
+            if (response.IsSuccess)
             {
-                var userASP = (MyUserASP)response.result;
+                var userASP = (MyUserASP)response.Result;
                 MainViewModel.GetInstance().UserASP = userASP;
                 Settings.UserASP = JsonConvert.SerializeObject(userASP);
             }
@@ -118,6 +143,63 @@ namespace Sales.ViewModels
             Application.Current.MainPage = new MasterPage();
             this.IsRunning = false;
             this.isEnabled = true;
+        }
+
+        private async void LoginFacebook()
+        {
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    connection.Message,
+                    Languages.Accept);
+                return;
+            }
+
+            await Application.Current.MainPage.Navigation.PushAsync(
+                new LoginFacebookPage());
+        }
+
+        private async void LoginInstagram()
+        {
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    connection.Message,
+                    Languages.Accept);
+                return;
+            }
+
+            await Application.Current.MainPage.Navigation.PushAsync(
+                new LoginInstagramPage());
+        }
+
+        private async void LoginTwitter()
+        {
+            var connection = await this.apiService.CheckConnection();
+
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    connection.Message,
+                    Languages.Accept);
+                return;
+            }
+
+            await Application.Current.MainPage.Navigation.PushAsync(
+                new LoginTwitterPage());
         }
 
         private async void Register()
