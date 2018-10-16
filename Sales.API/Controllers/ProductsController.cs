@@ -14,6 +14,7 @@ using System.Web.Http.Description;
 
 namespace Sales.API.Controllers
 {
+    [Authorize]
     public class ProductsController : ApiController
     {
         private DataContext db = new DataContext();

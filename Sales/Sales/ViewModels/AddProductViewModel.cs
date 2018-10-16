@@ -55,13 +55,6 @@ namespace Sales.ViewModels
         #endregion
 
         #region Command
-        public ICommand SaveCommand
-        {
-            get
-            {
-                return new RelayCommand(Save);
-            }
-        }
 
         public ICommand ChangeImageCommand
         {
@@ -71,6 +64,13 @@ namespace Sales.ViewModels
             }
         }
 
+        public ICommand SaveCommand
+        {
+            get
+            {
+                return new RelayCommand(Save);
+            }
+        }
         #endregion
 
         #region Methods
@@ -180,7 +180,7 @@ namespace Sales.ViewModels
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
-            var response = await this.apiService.Post(url, prefix, controller, product);
+            var response = await this.apiService.Post(url, prefix, controller, product, Settings.TokenType, Settings.AccesToken);
 
             if (!response.isSuccess)
             {
@@ -198,7 +198,7 @@ namespace Sales.ViewModels
             productsViewModel.RefreshList();
             this.IsRunning = false;
             this.IsEnabled = true;
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
         }
         #endregion
     }

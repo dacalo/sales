@@ -11,7 +11,7 @@ namespace Sales.Backend.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            ContextKey = "Sales.Backend.Models.LocalDataContext";
+            //ContextKey = "Sales.Backend.Models.LocalDataContext";
         }
 
         protected override void Seed(Sales.Backend.Models.LocalDataContext context)
