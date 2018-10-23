@@ -30,7 +30,7 @@ namespace Sales.ViewModels
         {
             if(this.PageName == "LoginPage")
             {
-                Settings.AccesToken = string.Empty;
+                Settings.AccessToken = string.Empty;
                 Settings.TokenType = string.Empty;
                 Settings.IsRemembered = false;
                 MainViewModel.GetInstance().Login = new LoginViewModel();

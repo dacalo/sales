@@ -15,6 +15,7 @@ namespace Sales.ViewModels
     {
         #region Properties
         public AddProductViewModel AddProduct { get; set; }
+        public CategoriesViewModel Categories { get; set; }
         public EditProductViewModel EditProduct { get; set; }
         public LoginViewModel Login { get; set; }
         public MyUserASP UserASP { get; set; }
@@ -38,14 +39,24 @@ namespace Sales.ViewModels
         {
             get
             {
-                if (this.UserASP != null && this.UserASP.Claims != null && this.UserASP.Claims.Count > 3)
+                foreach (var claim in this.UserASP.Claims)
                 {
-                    return $"http://dacalo-001-site2.atempurl.com{this.UserASP.Claims[3].ClaimValue.Substring(1)}";
+                    if (claim.ClaimType == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/uri")
+                    {
+                        if (claim.ClaimValue.StartsWith("~"))
+                        {
+                            return $"http://dacalo-001-site2.atempurl.com{claim.ClaimValue.Substring(1)}";
+                        }
+
+                        return claim.ClaimValue;
+                    }
                 }
 
                 return null;
             }
         }
+
+
         #endregion
 
         #region Constructors

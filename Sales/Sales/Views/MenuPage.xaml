@@ -22,6 +22,7 @@
 	            Text="{Binding UserFullName}"
 	            TextColor="White"/>
             <ListView
+                BackgroundColor="Transparent"
             	ItemsSource="{Binding Menu}"
             	HasUnevenRows="True"
                 SeparatorVisibility="None">

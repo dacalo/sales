@@ -125,7 +125,7 @@ namespace Sales.ViewModels
             }
 
             Settings.TokenType = token.TokenType;
-            Settings.AccesToken = token.AccessToken;
+            Settings.AccessToken = token.AccessToken;
             Settings.IsRemembered = this.IsRemembered;
 
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
@@ -139,7 +139,7 @@ namespace Sales.ViewModels
             }
 
 
-            MainViewModel.GetInstance().Products = new ProductsViewModel();
+            MainViewModel.GetInstance().Categories = new CategoriesViewModel();
             Application.Current.MainPage = new MasterPage();
             this.IsRunning = false;
             this.isEnabled = true;

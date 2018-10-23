@@ -61,6 +61,50 @@ namespace Sales.Services
             }
         }
 
+        public async Task<Response> GetUser(string urlBase, string prefix, string controller, string email, string tokenType, string accessToken)
+        {
+            try
+            {
+                var getUserRequest = new GetUserRequest
+                {
+                    Email = email,
+                };
+
+                var request = JsonConvert.SerializeObject(getUserRequest);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                var url = $"{prefix}{controller}";
+                var response = await client.PostAsync(url, content);
+                var answer = await response.Content.ReadAsStringAsync();
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
+
+                var user = JsonConvert.DeserializeObject<MyUserASP>(answer);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = user,
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
         #region De forma no segura
         public async Task<Response> GetList<T>(string urlBase, string prefix, string controller)
         {
@@ -346,49 +390,125 @@ namespace Sales.Services
         }
         #endregion
 
-        public async Task<Response> GetUser(string urlBase, string prefix, string controller, string email, string tokenType, string accessToken)
+        #region Redes Sociales
+
+        public async Task<FacebookResponse> GetFacebook(string accessToken)
+        {
+            var requestUrl = "https://graph.facebook.com/v2.8/me/?fields=name," +
+                "picture.width(999),cover,age_range,devices,email,gender," +
+                "is_verified,birthday,languages,work,website,religion," +
+                "location,locale,link,first_name,last_name," +
+                "hometown&access_token=" + accessToken;
+            var httpClient = new HttpClient();
+            var userJson = await httpClient.GetStringAsync(requestUrl);
+            var facebookResponse =
+                JsonConvert.DeserializeObject<FacebookResponse>(userJson);
+            return facebookResponse;
+        }
+
+        public async Task<InstagramResponse> GetInstagram(string accessToken)
+        {
+            var client = new HttpClient();
+            var userJson = await client.GetStringAsync(accessToken);
+            var InstagramJson = JsonConvert.DeserializeObject<InstagramResponse>(userJson);
+            return InstagramJson;
+        }
+
+        public async Task<TokenResponse> LoginTwitter(string urlBase, string servicePrefix, string controller, TwitterResponse profile)
         {
             try
             {
-                var getUserRequest = new GetUserRequest
-                {
-                    Email = email,
-                };
-
-                var request = JsonConvert.SerializeObject(getUserRequest);
-                var content = new StringContent(request, Encoding.UTF8, "application/json");
-
+                var request = JsonConvert.SerializeObject(profile);
+                var content = new StringContent(
+                    request,
+                    Encoding.UTF8,
+                    "application/json");
                 var client = new HttpClient();
                 client.BaseAddress = new Uri(urlBase);
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
-                var url = $"{prefix}{controller}";
+                var url = $"{servicePrefix}{controller}";
                 var response = await client.PostAsync(url, content);
-                var answer = await response.Content.ReadAsStringAsync();
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    return new Response
-                    {
-                        IsSuccess = false,
-                        Message = answer,
-                    };
+                    return null;
                 }
 
-                var user = JsonConvert.DeserializeObject<MyUserASP>(answer);
-                return new Response
-                {
-                    IsSuccess = true,
-                    Result = user,
-                };
+                var tokenResponse = await GetToken(
+                    urlBase,
+                    profile.IdStr,
+                    profile.IdStr);
+                return tokenResponse;
             }
-            catch (Exception ex)
+            catch
             {
-                return new Response
-                {
-                    IsSuccess = false,
-                    Message = ex.Message,
-                };
+                return null;
             }
         }
+
+        public async Task<TokenResponse> LoginInstagram(string urlBase, string servicePrefix, string controller, InstagramResponse profile)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(profile);
+                var content = new StringContent(
+                    request,
+                    Encoding.UTF8,
+                    "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.PostAsync(url, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                var tokenResponse = await GetToken(
+                    urlBase,
+                    profile.UserData.Id,
+                    profile.UserData.Id);
+                return tokenResponse;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<TokenResponse> LoginFacebook(string urlBase, string servicePrefix, string controller, FacebookResponse profile)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(profile);
+                var content = new StringContent(
+                    request,
+                    Encoding.UTF8,
+                    "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri(urlBase);
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.PostAsync(url, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+
+                var tokenResponse = await GetToken(
+                    urlBase,
+                    profile.Id,
+                    profile.Id);
+                return tokenResponse;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
 
 
     }

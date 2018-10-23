@@ -45,7 +45,7 @@ namespace Sales.Helpers
             }
         }
 
-        public static string AccesToken
+        public static string AccessToken
         {
             get
             {

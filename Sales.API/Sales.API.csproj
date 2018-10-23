@@ -233,6 +233,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -257,7 +258,15 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Categories\books.jpeg" />
+    <Content Include="Content\Categories\electronics.jpeg" />
+    <Content Include="Content\Categories\footware.jpeg" />
+    <Content Include="Content\Categories\perfumes.jpeg" />
+    <Content Include="Content\Products\a1219315-6593-497d-880f-8eebde7460b3.jpg" />
+    <Content Include="Content\Products\e4ae131a-9797-4944-8a65-ab57f4c35cb7.jpg" />
     <Content Include="Content\Products\impresora.jpg" />
+    <Content Include="Content\Users\6ac7001d-e6a4-4bf1-953c-6d91a98646db.jpg" />
+    <Content Include="Content\Users\b041c020-1f35-41c2-ae5f-3fb5b6ef83b3.jpg" />
     <Content Include="Content\Users\nouser.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -286,7 +295,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
