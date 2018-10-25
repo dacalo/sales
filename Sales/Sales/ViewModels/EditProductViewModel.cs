@@ -5,7 +5,10 @@ using Sales.Common.Models;
 using Sales.Helpers;
 using Sales.Services;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,12 +17,15 @@ namespace Sales.ViewModels
     public class EditProductViewModel : BaseViewModel
     {
         #region Attributes
-        private Product product;
+
         private ApiService apiService;
+        private ObservableCollection<Category> categories;
+        private Category category;
         private bool isRunning;
         private bool isEnabled;
         private ImageSource imageSource;
         private MediaFile file;
+        private Product product;
         #endregion
 
         #region Properties
@@ -27,6 +33,19 @@ namespace Sales.ViewModels
         {
             get { return this.product; }
             set { this.SetValue(ref this.product, value); }
+        }
+
+        public List<Category> MyCategories { get; set; }
+
+        public Category Category
+        {
+            get { return this.category; }
+            set { this.SetValue(ref this.category, value); }
+        }
+        public ObservableCollection<Category> Categories
+        {
+            get { return this.categories; }
+            set { this.SetValue(ref this.categories, value); }
         }
 
         public bool IsRunning
@@ -54,6 +73,7 @@ namespace Sales.ViewModels
             this.apiService = new ApiService();
             this.IsEnabled = true;
             this.ImageSource = product.ImageFullPath;
+            this.LoadCategories();
         }
         #endregion
 
@@ -170,6 +190,53 @@ namespace Sales.ViewModels
             await App.Navigator.PopAsync();
         }
 
+        private async void LoadCategories()
+        {
+            this.IsRunning = true;
+            this.IsEnabled = false;
+
+            var connection = await this.apiService.CheckConnection();
+            if (!connection.IsSuccess)
+            {
+                this.IsRunning = false;
+                this.IsEnabled = true;
+                await Application.Current.MainPage.DisplayAlert(Languages.Error, connection.Message, Languages.Accept);
+                return;
+            }
+
+            var answer = await this.LoadCategoriesFromAPI();
+            if (answer)
+            {
+                this.RefreshList();
+            }
+
+            this.Category = this.MyCategories.FirstOrDefault(c => c.CategoryId == this.Product.CategoryId);
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+        }
+
+        private void RefreshList()
+        {
+            this.Categories = new ObservableCollection<Category>(this.MyCategories.OrderBy(c => c.Description));
+        }
+
+        private async Task<bool> LoadCategoriesFromAPI()
+        {
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var prefix = Application.Current.Resources["UrlPrefix"].ToString();
+            var controller = Application.Current.Resources["UrlCategoriesController"].ToString();
+            var response = await this.apiService.GetList<Category>(url, prefix, controller, Settings.TokenType, Settings.AccessToken);
+            if (!response.IsSuccess)
+            {
+                return false;
+            }
+
+            this.MyCategories = (List<Category>)response.Result;
+            return true;
+        }
+
+
         private async void Save()
         {
             if (string.IsNullOrEmpty(this.Product.Description))
@@ -186,6 +253,15 @@ namespace Sales.ViewModels
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
                     Languages.PriceError,
+                    Languages.Accept);
+                return;
+            }
+
+            if (this.Category == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.CategoryError,
                     Languages.Accept);
                 return;
             }
@@ -211,7 +287,9 @@ namespace Sales.ViewModels
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
                 this.Product.ImageArray = imageArray;
             }
-            
+
+            this.Product.CategoryId = this.Category.CategoryId;
+
             var url = Application.Current.Resources["UrlAPI"].ToString();
             var prefix = Application.Current.Resources["UrlPrefix"].ToString();
             var controller = Application.Current.Resources["UrlProductsController"].ToString();
@@ -240,6 +318,8 @@ namespace Sales.ViewModels
             this.IsEnabled = true;
             await App.Navigator.PopAsync();
         }
+
+
         #endregion
     }
 }

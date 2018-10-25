@@ -51,24 +51,36 @@
                         Keyboard="Numeric"
                         Placeholder="{i18n:Translate PricePlaceHolder}"
                         Text="{Binding Product.Price}"/>
-                    <Label 
-                        VerticalOptions="Center"
+                    <Label
                         Grid.Column="0"
                         Grid.Row="2"
-                        Text="{i18n:Translate Remarks}"/>
-                    <Editor
+                        Text="{i18n:Translate Category}"
+                        VerticalOptions="Center"/>
+                    <Picker
                         Grid.Column="1"
                         Grid.Row="2"
-                        VerticalOptions="FillAndExpand"
-                        Text="{Binding Product.Remarks}"/>
+                        ItemDisplayBinding="{Binding Description}"
+                        ItemsSource="{Binding Categories}"
+                        SelectedItem="{Binding Category}"
+                        Title="{i18n:Translate CategoryPlaceholder}"/>
                     <Label
                         Grid.Column="0"
                         Grid.Row="3"
+                        Text="{i18n:Translate Remarks}"
+                        VerticalOptions="Center"/>
+                    <Editor
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Text="{Binding Product.Remarks}"
+                        VerticalOptions="FillAndExpand"/>
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
                         Text="{i18n:Translate IsAvailable}"
                         VerticalOptions="Center"/>
                     <Switch
                         Grid.Column="1"
-                        Grid.Row="3"
+                        Grid.Row="4"
                         HorizontalOptions="End"
                         IsToggled="{Binding Product.IsAvailable}"/>
                 </Grid>
